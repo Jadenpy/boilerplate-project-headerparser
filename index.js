@@ -27,6 +27,25 @@ app.get('/api/hello', function (req, res) {
 
 // *************************My codes****************************
 
+// 1. must provide your own proj,not the example URL.   Done
+// 2. /api/whoami   --->
+// 2-1. JSON obj  likes {ipaddress: your ip}
+// 2-2. JSON obj  likes {language: your language}
+// 2-3. JSON obj  likes {software: your software}
+
+// Question: how to get the ip, language and software?
+
+app.get('/api/whoami', function (req, res) {
+  console.log('ip:', req.headers['x-forwarded-for'] || req.connection.remoteAddress);
+  console.log('language:',req.headers['accept-language']);
+  console.log('software:',req.headers['user-agent']);
+  res.json({
+    ipaddress: req.headers['x-forwarded-for'] || req.connection.remoteAddress,
+    language: req.headers['accept-language'],
+    software: req.headers['user-agent']
+  });
+})
+
 
 // *************************My codes****************************
 
